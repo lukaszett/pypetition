@@ -1,0 +1,79 @@
+body{
+    background-color: #e50050;
+}
+
+.container{
+    background-color: #fff;
+}
+
+.signatures{
+    background-color: #fafafa;
+    margin-left: auto;
+}
+
+.signatures ul{
+    list-style: none;
+    padding: 0
+}
+
+.signatures li{
+    padding-bottom: 10px;
+}
+
+.public_name{
+    font-weight: bold;
+}
+
+.signature_info{
+    font-size:0.8em;
+    font-style: italic;
+    display:block;
+}
+
+.sign{
+    background-color: #fafafa;
+    width: 100%;
+}
+
+input{
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+select{
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.control-group{
+    width: 100%;
+}
+
+.buttons_top{
+    background-color: #28a745;
+    padding: 10px 20px 10px 20px;
+    border: 1px solid;
+    margin: 20px 0 20px 0;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: bold;
+    line-height: 100px;
+}
+
+.n_signatures{
+
+}
+
+.sign_now:hover{
+    border: white;
+    color: #eee;
+}
+
+.btn{
+    width: 100%;
+    margin-top: 20px;
+    font-style: bold;
+}

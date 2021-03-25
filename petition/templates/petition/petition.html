@@ -1,0 +1,65 @@
+{% extends "petition/base.html" %}
+
+{% load crispy_forms_tags %}
+{% load markdown_filter %}
+
+{% block style %}{{ object.custom_css | safe }}{% endblock %}
+
+{% block title %}{{ content.title }}{% endblock %}
+
+{% block content %}
+
+    
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 pr-5">    
+                <h1>{{ object.title }}</h1>
+            
+            <div class="row">
+                <div class="col-md-7 n_signatures buttons_top">{{n_signatures}} Personen haben schon unterschrieben!</div>
+                <a href="#form" class="col-md-4 buttons_top sign_now">Direkt unterschreiben</a>
+            </div>
+            
+            <p>{{ object.description|markdown_filter|safe }}</p>
+
+        </div>
+        <div class="signatures d-none d-md-block col-md-3 ml-a border rounded p-4">
+            <h5>Letzte Unterzeichner*innen</h5>
+            <ul>
+            {% for signature in recent_signatures %}
+                <li><span class="public_name">{{signature.public_name}}</span>
+                    {% for key, value in signature.data.items %}
+                        <span class="signature_info class_{{key}}">{{value}}</span>
+                    {% endfor %}
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="row" id="form">
+        <div class="sign border rounded p-4 mt-5">
+            <h4>Unterschreiben</h4>
+            <form action="" method="post" id="support_form">
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0 pl-md-0 pr-md-2">
+                        {{ form.vorname|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-6 mb-0 pr-md-0 pl-md-2">
+                        {{ form.name|as_crispy_field }}
+                    </div>
+                </div>
+                {% for field in form %}
+                    {% if field.name == "vorname" or field.name == "name" %}
+                    {% else%}
+                    <div class="form-row">
+                    {{ field | as_crispy_field}}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+                {% csrf_token %}
+                <button class="btn btn-success" type="submit">Ich unterstütze die Petition!</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'petition/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'petition/css/style.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+    <style>{% block style %}{% endblock %}</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+    <div class="content container mt-3 px-5 pt-3">
+
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+
+    <footer>
+        <small>Es wurden {{query_num}} Queries an die Datenbank gesendet. Das hat {{time}} Sekunden gedauert.</small>
+    </footer>
+
+    </div>
+</body>
